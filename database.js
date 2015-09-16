@@ -2,13 +2,21 @@
 
 var sqlite3 = require('sqlite3').verbose();
 
-function Database() {
-
+function Database(path) {
+  this.path = path;
 }
 
 Database.prototype = {
   // reassigning prototype
-  test: function() { console.log('yay, it works!');}
+  test: function() { console.log('yay, it works!');},
+
+  query: function() {
+    var db = new sqlite3.Database(this.path);
+
+    db.serialize(function() {
+      
+    })
+  }
 }
 
 // Database.prototype.test = function() {}
